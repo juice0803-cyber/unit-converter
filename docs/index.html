@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17694b">
+  <meta name="description" content="簡單、即時的公制與英制單位換算工具。支援長度與重量、交換單位、複製結果和常用換算速查。">
+  <title>換算所 — 公制・英制單位換算</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#converter">跳至換算工具</a>
+  <header class="site-header shell">
+    <a class="brand" href="./" aria-label="換算所首頁"><span class="brand-icon" aria-hidden="true">⇄</span><span>換算所<span class="brand-en">UNIT STUDIO</span></span></a>
+    <span class="header-note"><span class="status-dot"></span> 讓數字，跨越單位</span>
+  </header>
+  <main class="shell">
+    <section class="intro" aria-labelledby="page-title">
+      <div class="intro-copy">
+        <p class="eyebrow"><span></span> A LITTLE TOOL FOR EVERYDAY LIFE</p>
+        <h1 id="page-title">換個單位，<br><span>一樣直覺。</span></h1>
+        <p class="intro-description">從公分到英吋，從公斤到磅。<br>日常需要的換算，在這裡輕鬆完成。</p>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 430 230" fill="none">
+          <circle cx="236" cy="109" r="89" fill="#e7eddf"/><circle cx="236" cy="109" r="68" stroke="#cbd6c3" stroke-dasharray="3 7"/>
+          <g transform="translate(78 98) rotate(-17)"><rect width="260" height="64" rx="8" fill="#d6e8a7" stroke="#17694b" stroke-width="1.5"/><path d="M17 0v26m18-26v14m18-14v14m18-14v26m18-26v14m18-14v14m18-14v26m18-26v14m18-14v14m18-14v26m18-26v14m18-14v14m18-14v26" stroke="#17694b" stroke-width="1.5"/><text x="18" y="48" fill="#17694b" font-family="monospace" font-size="11">0</text><text x="69" y="48" fill="#17694b" font-family="monospace" font-size="11">1</text><text x="123" y="48" fill="#17694b" font-family="monospace" font-size="11">2</text><text x="177" y="48" fill="#17694b" font-family="monospace" font-size="11">3</text><text x="229" y="48" fill="#17694b" font-family="monospace" font-size="11">4</text></g>
+          <g transform="translate(266 139) rotate(9)"><rect width="97" height="61" rx="12" fill="#17694b"/><path d="M30 22h36l-7-7m7 24H30l7 7" stroke="#e3efc7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+          <g transform="translate(96 37)"><rect width="89" height="38" rx="19" fill="#fff" stroke="#e1e5db"/><text x="44" y="24" text-anchor="middle" fill="#52705e" font-family="monospace" font-size="14">cm → in</text></g>
+          <path d="M349 48v16m-8-8h16M73 174v12m-6-6h12" stroke="#7e966c" stroke-width="1.5" stroke-linecap="round"/><circle cx="356" cy="112" r="3" fill="#b4c69c"/>
+        </svg>
+      </div>
+    </section>
+    <section class="workspace" aria-label="單位換算">
+      <div class="converter-card" id="converter">
+        <div class="card-heading"><h2>單位換算</h2><span class="live-badge"><span class="status-dot"></span> 即時換算</span></div>
+        <div class="category-tabs" role="tablist" aria-label="換算類別">
+          <button id="length-tab" class="category-tab active" type="button" role="tab" aria-selected="true" aria-controls="conversion-panel" data-category="length"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 15 11-11 5 5L9 20H4v-5ZM12 7l2 2m-5 1 2 2m-5 1 2 2"/></svg>長度<span>LENGTH</span></button>
+          <button id="weight-tab" class="category-tab" type="button" role="tab" aria-selected="false" aria-controls="conversion-panel" tabindex="-1" data-category="weight"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7a3 3 0 1 1 6 0M7 8h10l3 12H4L7 8Z"/></svg>重量<span>WEIGHT</span></button>
+        </div>
+        <div id="conversion-panel" role="tabpanel" aria-labelledby="length-tab" tabindex="0">
+          <label class="field-label" for="amount">輸入數值<span>VALUE</span></label>
+          <div class="amount-wrap"><input id="amount" type="text" inputmode="decimal" value="100" autocomplete="off" spellcheck="false" aria-describedby="input-error" placeholder="輸入要換算的數字"><span id="input-symbol" aria-hidden="true">cm</span></div>
+          <p id="input-error" class="input-error" role="status"></p>
+          <div class="unit-row">
+            <div class="unit-field"><label class="field-label" for="from-unit">從<span>FROM</span></label><select id="from-unit" aria-label="來源單位"></select></div>
+            <button class="swap-button" id="swap" type="button" aria-label="交換來源與目標單位" title="交換單位"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16l-4-4M20 16H4l4 4"/></svg></button>
+            <div class="unit-field"><label class="field-label" for="to-unit">到<span>TO</span></label><select id="to-unit" aria-label="目標單位"></select></div>
+          </div>
+          <div class="result-panel">
+            <div class="result-top"><span>換算結果</span><button id="copy" class="copy-button" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V3H3v13h5"/></svg><span>複製結果</span></button></div>
+            <div class="result-value" aria-live="polite" aria-atomic="true"><output id="result" for="amount from-unit to-unit">39.370079</output><span id="result-symbol">in</span></div>
+            <p id="equation" class="equation">100 公分 = 39.370079 英吋</p>
+          </div>
+          <div class="precision-row"><label for="precision">顯示精度</label><select id="precision"><option value="auto">自動（8 位有效數字）</option><option value="2">小數點後 2 位</option><option value="4">小數點後 4 位</option><option value="6">小數點後 6 位</option></select></div>
+        </div>
+      </div>
+      <aside class="side-column">
+        <section class="quick-card" aria-labelledby="quick-title"><p class="eyebrow">A QUICK START</p><h2 id="quick-title">常用換算，一鍵到位。</h2><p class="card-description">選一組單位，馬上開始。</p><div id="shortcuts" class="shortcuts"></div><div class="quick-note"><span aria-hidden="true">↗</span><p>輸入數字就會自動換算，<br>不用再按計算鍵。</p></div></section>
+        <section class="tip-card"><span class="tip-icon" aria-hidden="true">i</span><div><h3>小單位，大學問</h3><p id="unit-tip">1 英吋正好等於 2.54 公分。買螢幕、量尺寸時，換算一下更有底。</p></div></section>
+      </aside>
+    </section>
+    <section class="reference-section" aria-labelledby="reference-title">
+      <div class="reference-heading"><div><p class="eyebrow">THE SAME VALUE, DIFFERENT UNITS</p><h2 id="reference-title">其他單位，一起看。</h2></div><p id="reference-context">以目前輸入的 100 公分換算</p></div>
+      <div id="equivalents" class="equivalents"></div>
+      <p class="definition-note" id="definition-note">採用國際英吋、英呎與英里定義。結果依顯示精度四捨五入。</p>
+    </section>
+  </main>
+  <footer class="site-footer shell"><span>換算所 <span class="footer-dot">·</span> 把換算變簡單</span><span>公制 ⇄ 英制 <span class="footer-dot">/</span> 長度 &amp; 重量</span></footer>
+  <div id="toast" class="toast" role="status"></div>
+</body>
+</html>
