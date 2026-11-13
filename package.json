@@ -1,0 +1,12 @@
+{
+  "name": "unit-converter",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "繁體中文公制與英制長度、重量換算工具",
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "engines": { "node": ">=20" }
+}
